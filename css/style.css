@@ -1,0 +1,117 @@
+ /* alinhar imagens */
+ #containerFotos{
+  text-align: center;
+ }
+ 
+ /* Style the Image Used to Trigger the Modal */
+ .myImgClass {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .myImgClass:hover {opacity: 0.7;}
+  
+  /* The Modal (background) */
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed;  /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+  }
+  
+  /* Modal Content (Image) */
+  .modal-content {
+    margin: auto;
+    display: block;
+
+    /* modifica o tamanho da imagem exibida*/
+    width: 30%;
+    max-width: 700px;
+  }
+  
+  /* Caption of Modal Image (Image Text) - Same Width as the Image */
+  #caption {
+    margin: auto;
+    display: block;
+
+    /* modifica o tamanho do comentário alt exibido*/
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+  }
+  
+  /* Add Animation - Zoom in the Modal */
+  .modal-content, #caption {
+    animation-name: zoom;
+    animation-duration: 0.6s;
+  }
+  
+  @keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+  }
+
+  /*  Buttons */
+  .close, .download {
+    position: absolute;
+    color: #f1f1f1;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+  
+  .leftButton, .rightButton {
+    color: #f1f1f1;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+
+  .close:hover, .close:focus, 
+  .download:hover, .download:focus{
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  /* the Close Button*/
+  .close {
+    top: 15px;
+    right: 35px;
+    font-size: 40px;
+  }
+  
+  /* The Download Button*/
+  .download{
+    top: 29px;
+    right: 85px;
+    font-size: 26px;
+  }
+
+  /* The Download Button*/
+  .leftButton{
+
+    font-size: 26px;
+  }
+
+  /* The Download Button*/
+  .rightButton{
+
+    font-size: 500px;
+  }
+
+  /* 100% Image Width on Smaller Screens */
+  @media only screen and (max-width: 700px){
+    .modal-content {
+      width: 80%;
+    }
+  } 
