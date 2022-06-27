@@ -28,6 +28,12 @@ for(let i = 0; i < links_navbar.length; i++){
 
 // exibe as imagens no site
 function gerarImagens(definedPhotoArray){
+    
+    // vai para o topo da página web
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    window.scrollTo(0,0);
+
     // deleta todos os elementos dentro de containerFotos
     while (containerFotos.firstChild) {
         containerFotos.removeChild(containerFotos.lastChild);
