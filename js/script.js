@@ -4,7 +4,6 @@ let containerFotos = document.getElementById("containerFotos");
 const folderDivision = [
     1, 179, 585, 698, 760, 908, 1101, 1210, 1417, 1444  
 ];
-const imgNumber = 1443;
 
 // gerando nomes das fotos
 let photoArray = new Array(folderDivision.length);
@@ -35,7 +34,7 @@ function gerarImagens(definedPhotoArray){
     }
 
     // gerar imagens
-    let imgArray = []
+    let imgArray = [];
     for(let i = 0; i < definedPhotoArray.length; i++){
         imgArray[i] = document.createElement("img");
         imgArray[i].style.width = "300px";
@@ -47,7 +46,7 @@ function gerarImagens(definedPhotoArray){
         // quando a imagem é clicada, é invocada a função
         // que cria o modal
         imgArray[i].onclick = function(){
-            createModal(imgArray[i], photoArray[i]);
+            createModal(imgArray[i], definedPhotoArray[i]);
         };
     
         // adicionando as imagens na DOM
@@ -65,19 +64,20 @@ let modalImg = document.getElementById("img01");
 let captionText = document.getElementById("caption");
 
 // Get the download link
-let downloadLink = document.getElementById("downloadLink");
+let downloadId = document.getElementById("downloadId");
 
 // função que cria o modal
-// img = image object
+// img = image tag
 // imgLink = link of the image (inside /img/ folder)
 function createModal(img, imgLink){
     modal.style.display = "block";
     modalImg.src = img.src;
     captionText.innerHTML = img.alt;
 
-    // Set href and download parameters of downloadLink
-    downloadLink.href = imgLink;
-    downloadLink.download = img.alt;
+    // Set href and download parameters of downloadId
+    downloadId.href = imgLink;
+    downloadId.downloadId = img.alt;
+
 }
 
 // Get the <span> element that closes the modal
