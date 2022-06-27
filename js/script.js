@@ -1,34 +1,58 @@
 // get os elementos do HTML
-let div = document.getElementById("containerFotos");
+let containerFotos = document.getElementById("containerFotos");
 
-// gerando nomes das fotos
-let photoArray = [];
+const folderDivision = [
+    1, 179, 585, 698, 760, 908, 1101, 1210, 1417, 1444  
+];
 const imgNumber = 1443;
 
-// cria um array com os nomes das imagens da pasta /img/
-// estes nomes devem estar padronizados, modificando apenas o número deles no final
-for(let i = 1; i < imgNumber; i++){
-    photoArray.push("img/Casamento Larisa e Guilherme-" + i + ".jpg");
+// gerando nomes das fotos
+let photoArray = new Array(folderDivision.length);
+for (let i = 0; i < photoArray.length; i++){
+    photoArray[i] = new Array();
 }
 
-// criando um array de imagens nomeadas em photoArray
-let imgArray = []
-for(let i = 0; i < imgNumber; i++){
-    imgArray[i] = document.createElement("img");
-    imgArray[i].style.width = "300px";
-    imgArray[i].style.margin = "5px";
-    imgArray[i].src = photoArray[i];
-    imgArray[i].alt = photoArray[i].substring(4);
-    imgArray[i].className = "myImgClass";
+// cria um array com os nomes das imagens da pasta /img/1/, /img/2/ ... /img/9/ 
+for(let i = 0; i < folderDivision.length; i++){
+    for(let j = folderDivision[i]; j < folderDivision[i+1]; j++){
+        photoArray[i].push("img/" + (i) +  "/Casamento Larisa e Guilherme-" + (j) + ".jpg");
+    }    
+}
 
-    // quando a imagem é clicada, é invocada a função
-    // que cria o modal
-    imgArray[i].onclick = function(){
-        createModal(imgArray[i], photoArray[i]);
-    };
+// seleciona o array de nome de imagens correto
+let links_navbar = document.getElementsByClassName("links-navbar");
+for(let i = 0; i < links_navbar.length; i++){
+    links_navbar[i].onclick = function(){
+        gerarImagens(photoArray[i]);
+    }
+}
 
-    // adicionando as imagens na DOM
-    div.appendChild(imgArray[i]);
+// exibe as imagens no site
+function gerarImagens(definedPhotoArray){
+    // deleta todos os elementos dentro de containerFotos
+    while (containerFotos.firstChild) {
+        containerFotos.removeChild(containerFotos.lastChild);
+    }
+
+    // gerar imagens
+    let imgArray = []
+    for(let i = 0; i < definedPhotoArray.length; i++){
+        imgArray[i] = document.createElement("img");
+        imgArray[i].style.width = "300px";
+        imgArray[i].style.margin = "5px";
+        imgArray[i].src = definedPhotoArray[i];
+        imgArray[i].alt = definedPhotoArray[i].substring(6);
+        imgArray[i].className = "myImgClass";
+    
+        // quando a imagem é clicada, é invocada a função
+        // que cria o modal
+        imgArray[i].onclick = function(){
+            createModal(imgArray[i], photoArray[i]);
+        };
+    
+        // adicionando as imagens na DOM
+        containerFotos.appendChild(imgArray[i]);
+    }
 }
 
 // --------------------------------------------
@@ -64,3 +88,4 @@ closeButton.onclick = function() {
   modal.style.display = "none";
 } 
 
+// --------------------------------------------
